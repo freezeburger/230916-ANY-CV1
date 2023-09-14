@@ -1,0 +1,20 @@
+<p>product-list works!</p>
+
+<!--
+<pre>
+  {{ presenter.state$ | async | json }}
+</pre>
+-->
+
+<div *ngIf=" ( presenter.state$ | async )?.products as products ">
+
+  <div *ngFor="let p of products">
+    <h3>{{p.title}}</h3>
+    <img [src]="p.thumbnail" width="150" height="150">
+  </div>
+
+</div>
+
+<button (click)="requestProducts()">
+  Click to load Products
+</button>
