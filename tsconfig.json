@@ -4,7 +4,8 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "cdc": [
+      "@cdc": [
+        "./projects/cdc/src/public-api.ts",
         "dist/cdc"
       ]
     },

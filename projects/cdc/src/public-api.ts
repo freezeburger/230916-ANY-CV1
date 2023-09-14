@@ -3,3 +3,5 @@
  */
 
 export * from './lib/cdc.module';
+
+export * from './lib/button/button.component';
