@@ -6,6 +6,13 @@
 
 <pre>{{feedbackMessage }}</pre>
 
+<form>
+
+  <input type="text" [(ngModel)]="credentials.email">
+  <input type="text" [(ngModel)]="credentials.password">
+
+</form>
+
 <button (click)="requestAuthLogin()">
     Click to load Login
 </button>

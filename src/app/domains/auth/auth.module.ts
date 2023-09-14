@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { AuthLoginComponent } from './auth-login/auth-login.component';
 import { AuthRegisterComponent } from './auth-register/auth-register.component';
 import { AuthPresenterDirective } from './directives/auth-presenter.directive';
-
-
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +11,7 @@ import { AuthPresenterDirective } from './directives/auth-presenter.directive';
     AuthPresenterDirective
   ],
   imports: [
-    CommonModule
+    SharedModule
   ],
   exports: [
     AuthLoginComponent,
