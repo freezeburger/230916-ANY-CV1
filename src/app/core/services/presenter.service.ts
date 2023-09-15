@@ -9,7 +9,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class PresenterService implements FacadeService<State, ActionEnum> {
 
-  // TODO Observable Theory
   private _state$ = new BehaviorSubject<State>({
     products: [],
     messages: [],
@@ -20,13 +19,16 @@ export class PresenterService implements FacadeService<State, ActionEnum> {
   public state$ = this._state$.asObservable();
 
   async dispatch(action: FacadeAction<ActionEnum>) {
-    //console.table(action);
     this.action$.next(action);
 
-    // NOT GOOD REWORK
     if (action.type === ActionEnum.PRODUCT_LIST_UPDATE)
-      this._state$.next({ ...this._state$.value, products:action.payload })
+      this.updateState({products:action.payload})
 
+  }
+
+
+  private updateState(update:Partial<State>){
+    this._state$.next({ ...this._state$.value, ...update })
   }
 
 }
