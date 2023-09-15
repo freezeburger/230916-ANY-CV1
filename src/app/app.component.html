@@ -1,3 +1,9 @@
+<div *ngIf=" (presenter.state$ | async)?.notification as notification">
+  <strong>{{notification.text}}</strong>
+  <em>{{notification.time | date }}</em>
+  <button (click)="clear()">X</button>
+</div>
+
 <nav>
   <a routerLink="/auth">Home</a> |
   <a routerLink="/products">Products</a>  |
