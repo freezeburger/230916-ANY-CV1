@@ -12,6 +12,7 @@ export class PresenterService implements FacadeService<State, ActionEnum> {
   private _state$ = new BehaviorSubject<State>({
     products: [],
     messages: [],
+    notification:null,
     authenticated: false,
     online: true
   });
@@ -30,6 +31,10 @@ export class PresenterService implements FacadeService<State, ActionEnum> {
   private createUpdateFromAction(action: FacadeAction<ActionEnum>): Partial<State>{
     const update: Partial<State> = {}
     switch (action.type) {
+
+      case ActionEnum.APP_NOTIFICATION:
+        update.notification =  action.payload;
+        break;
 
       case ActionEnum.PRODUCT_LIST_UPDATE:
         update.products =  action.payload;
