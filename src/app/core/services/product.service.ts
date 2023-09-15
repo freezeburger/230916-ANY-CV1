@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -6,8 +6,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProductService {
 
+  private http = inject(HttpClient)
+
   constructor(
-    @Inject(HttpClient) private http:HttpClient
+    // @Inject(HttpClient) private http:HttpClient
+    // private http:HttpClient
   ){}
 
   getProducts(){
