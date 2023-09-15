@@ -22,6 +22,12 @@ export class PresenterService implements FacadeService<State, ActionEnum> {
   async dispatch(action: FacadeAction<ActionEnum>) {
     this.action$.next(action);
 
+    const update = this.createUpdateFromAction(action);
+    this.updateState(update)
+
+  }
+
+  private createUpdateFromAction(action: FacadeAction<ActionEnum>): Partial<State>{
     const update: Partial<State> = {}
     switch (action.type) {
 
@@ -39,9 +45,7 @@ export class PresenterService implements FacadeService<State, ActionEnum> {
       default:
         break;
     }
-
-    this.updateState({ products: action.payload })
-
+    return update;
   }
 
 
