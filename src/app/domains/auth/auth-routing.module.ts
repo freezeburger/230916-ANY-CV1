@@ -16,7 +16,7 @@ const routes: Routes = [
     path:'**',
     redirectTo:'register',
     pathMatch:'prefix'
-  },
+  }
 ];
 
 @NgModule({
