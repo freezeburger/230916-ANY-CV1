@@ -20,7 +20,8 @@ export class PresenterService implements FacadeService<State, ActionEnum> {
   public state$ = this._state$.asObservable();
 
   async dispatch(action: FacadeAction<ActionEnum>) {
-    console.table(action);
+    //console.table(action);
+    this.action$.next(action);
 
     // NOT GOOD REWORK
     if (action.type === ActionEnum.PRODUCT_LIST_REQUEST) {
