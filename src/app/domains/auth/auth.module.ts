@@ -3,6 +3,7 @@ import { AuthLoginComponent } from './auth-login/auth-login.component';
 import { AuthRegisterComponent } from './auth-register/auth-register.component';
 import { AuthPresenterDirective } from './directives/auth-presenter.directive';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { AuthRoutingModule } from './auth-routing.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     AuthPresenterDirective
   ],
   imports: [
-    SharedModule
+    SharedModule,
+    AuthRoutingModule
   ],
   exports: [
     AuthLoginComponent,
