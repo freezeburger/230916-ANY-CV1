@@ -6,6 +6,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { AuthRoutingModule } from './auth-routing.module';
 import { ViewLoginComponent } from './views/view-login/view-login.component';
 import { ViewRegisterComponent } from './views/view-register/view-register.component';
+import { PRESENTER_MIDDLEWARE } from 'src/app/core/services/presenter.token';
+import { LoggerMiddlewareService } from 'src/app/core/middlewares/presenter/logger.middleware.service';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,9 @@ import { ViewRegisterComponent } from './views/view-register/view-register.compo
   exports: [
     ViewLoginComponent,
     ViewRegisterComponent
+  ],
+  providers:[
+    { provide:PRESENTER_MIDDLEWARE, useClass:LoggerMiddlewareService, multi:true},
   ]
 })
 export class AuthModule { }

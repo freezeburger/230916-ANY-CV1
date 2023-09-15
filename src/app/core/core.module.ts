@@ -1,9 +1,11 @@
-import { NgModule } from '@angular/core';
+import { NgModule, inject } from '@angular/core';
 import { PresenterDirective } from './directives/presenter.directive';
 import { LoggerMiddlewareService } from './middlewares/presenter/logger.middleware.service';
 import { ProductMiddlewareService } from './middlewares/presenter/product.middleware.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterMiddlewareService } from './middlewares/presenter/router.middleware.service';
+import { GenericInterceptorService } from './middlewares/interceptors/generic-interceptor.service';
+import { PRESENTER_MIDDLEWARE } from './services/presenter.token';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,23 @@ import { RouterMiddlewareService } from './middlewares/presenter/router.middlewa
   exports: [
     PresenterDirective
   ],
-  providers:[]
+  providers:[
+    { provide:HTTP_INTERCEPTORS, useClass:GenericInterceptorService, multi:true},
+    //{ provide:PRESENTER_MIDDLEWARE, useClass:LoggerMiddlewareService, multi:true},
+    { provide:PRESENTER_MIDDLEWARE, useClass:ProductMiddlewareService, multi:true},
+    { provide:PRESENTER_MIDDLEWARE, useClass:RouterMiddlewareService, multi:true}
+  ]
 })
 export class CoreModule {
+
+  private middlewares = inject(PRESENTER_MIDDLEWARE);
+
+  /*
   constructor(
-    loggerMiddelware: LoggerMiddlewareService,
+     loggerMiddelware: LoggerMiddlewareService,
     productMiddleware: ProductMiddlewareService,
     routerMiddleware:RouterMiddlewareService
   ){}
+  */
+
  }

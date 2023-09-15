@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { FacadeAction, FacadeService } from '../interfaces/patterns/facade-service';
 import { State } from '../interfaces/presenter/state';
 import { ActionEnum } from '../interfaces/presenter/action.enum';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { PRESENTER_MIDDLEWARE } from './presenter.token';
 
 @Injectable({
   providedIn: 'root'
