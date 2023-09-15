@@ -30,7 +30,7 @@ export class RouterMiddlewareService {
           text:'Navigation Impossible sans Authentification',
           time:Date.now()
         }
-        this.presenter.dispatch({type:ActionEnum.APP_NOTIFICATION, payload:notification })
+        this.presenter.dispatch({type:ActionEnum.APP_NOTIFICATION, payload:notification });
       }
 
     });
