@@ -12,7 +12,8 @@ export class PresenterService implements FacadeService<State, ActionEnum> {
   private _state$ = new BehaviorSubject<State>({
     products: [],
     messages: [],
-    authenticated:false
+    authenticated:false,
+    online:true
   });
 
   public action$ = new BehaviorSubject<FacadeAction<ActionEnum> | null>(null);
