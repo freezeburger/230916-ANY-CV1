@@ -12,8 +12,8 @@ export class PresenterService implements FacadeService<State, ActionEnum> {
   private _state$ = new BehaviorSubject<State>({
     products: [],
     messages: [],
-    authenticated:false,
-    online:true
+    authenticated: false,
+    online: true
   });
 
   public action$ = new BehaviorSubject<FacadeAction<ActionEnum> | null>(null);
@@ -22,13 +22,30 @@ export class PresenterService implements FacadeService<State, ActionEnum> {
   async dispatch(action: FacadeAction<ActionEnum>) {
     this.action$.next(action);
 
-    if (action.type === ActionEnum.PRODUCT_LIST_UPDATE)
-      this.updateState({products:action.payload})
+    const update: Partial<State> = {}
+    switch (action.type) {
+
+      case ActionEnum.PRODUCT_LIST_UPDATE:
+        update.products =  action.payload;
+        break;
+
+      case ActionEnum.APP_ONLINE:
+        update.online = true;
+        break;
+
+      case ActionEnum.APP_OFFLINE:
+        update.online = false;
+        break;
+      default:
+        break;
+    }
+
+    this.updateState({ products: action.payload })
 
   }
 
 
-  private updateState(update:Partial<State>){
+  private updateState(update: Partial<State>) {
     this._state$.next({ ...this._state$.value, ...update })
   }
 
