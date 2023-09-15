@@ -23,8 +23,8 @@ import { PresenterService } from './core/services/presenter.service';
 export class AppModule {
 
   constructor(injector:Injector){
-      console.log(injector)
-      console.log(injector.get(PresenterService))
+/*       console.log(injector)
+      console.log(injector.get(PresenterService)) */
   }
 
  }

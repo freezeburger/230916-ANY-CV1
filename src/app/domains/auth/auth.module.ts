@@ -20,8 +20,6 @@ import { ViewRegisterComponent } from './views/view-register/view-register.compo
     AuthRoutingModule
   ],
   exports: [
-    AuthLoginComponent,
-    AuthRegisterComponent,
     ViewLoginComponent,
     ViewRegisterComponent
   ]

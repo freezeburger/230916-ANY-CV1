@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { genericGuard } from './core/middlewares/guards/generic.guard';
 
 const routes: Routes = [
   {
@@ -8,11 +9,13 @@ const routes: Routes = [
   },
   {
     path:'products',
-    loadChildren:()=>import('./domains/product/product.module').then( m => m.ProductModule)
+    loadChildren:()=>import('./domains/product/product.module').then( m => m.ProductModule),
+    canMatch:[genericGuard]
   },
   {
     path:'messages',
-    loadChildren:()=>import('./domains/message/message.module').then( m => m.MessageModule)
+    loadChildren:()=>import('./domains/message/message.module').then( m => m.MessageModule),
+    canMatch:[genericGuard]
   },
   {
     path:'**',
