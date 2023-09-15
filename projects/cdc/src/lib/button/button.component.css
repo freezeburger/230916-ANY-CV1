@@ -1,0 +1,24 @@
+button {
+  box-sizing: border-box;
+  margin: 5px;
+  padding: 3px 5px;
+  color:white;
+  min-width:65px;
+  height:35px;
+  border-radius: 3px;
+  background-color: darkgray;
+  text-transform: uppercase;
+  border:none;
+}
+
+:host.blue button{
+    background-color: cornflowerblue;
+}
+
+:host.red  button{
+    background-color: crimson;
+}
+
+:host.green button {
+    background-color: lightseagreen;
+}
