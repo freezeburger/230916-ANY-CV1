@@ -10,14 +10,14 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class PresenterService implements FacadeService<State, ActionEnum> {
 
   // TODO Observable Theory
-  state$ = new BehaviorSubject<State>({
+  private _state$ = new BehaviorSubject<State>({
     products: [],
     messages: [],
     authenticated:false
   });
 
-  action$ = new BehaviorSubject<FacadeAction<ActionEnum> | null>(null);
-
+  public action$ = new BehaviorSubject<FacadeAction<ActionEnum> | null>(null);
+  public state$ = this._state$.asObservable();
 
   async dispatch(action: FacadeAction<ActionEnum>) {
     console.table(action);
@@ -25,8 +25,8 @@ export class PresenterService implements FacadeService<State, ActionEnum> {
     // NOT GOOD REWORK
     if (action.type === ActionEnum.PRODUCT_LIST_REQUEST) {
       const products = await fetch('https://dummyjson.com/products').then(res => res.json()).then( data => data.products);
-      this.state$.next(
-        { ...this.state$.value, products }
+      this._state$.next(
+        { ...this._state$.value, products }
       )
     }
   }
