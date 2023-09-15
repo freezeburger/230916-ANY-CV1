@@ -20,8 +20,7 @@ export class ProductMiddlewareService {
         switchMap( action => productSrv.getProducts() )
       )
       .subscribe( products => {
-        presenterSrv.dispatch({type:ActionEnum.MESSAGE_LIST_UPDATE, payload:products})
+        presenterSrv.dispatch({type:ActionEnum.PRODUCT_LIST_UPDATE, payload:products})
       })
-
    }
 }
