@@ -5,5 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class ProductService {
 
-  constructor() { }
+  getProducts(){
+    return fetch('https://dummyjson.com/products')
+    .then(res => res.json())
+    .then( data => data.products);
+  }
 }

@@ -24,12 +24,9 @@ export class PresenterService implements FacadeService<State, ActionEnum> {
     this.action$.next(action);
 
     // NOT GOOD REWORK
-    if (action.type === ActionEnum.PRODUCT_LIST_REQUEST) {
-      const products = await fetch('https://dummyjson.com/products').then(res => res.json()).then( data => data.products);
-      this._state$.next(
-        { ...this._state$.value, products }
-      )
-    }
+    if (action.type === ActionEnum.PRODUCT_LIST_UPDATE)
+      this._state$.next({ ...this._state$.value, products:action.payload })
+
   }
 
 }
